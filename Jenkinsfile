@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                echo 'connect jenkins to github via URL'
+                 git 'https://github.com/Sanketmane5511/jenkins-demo-pipeline.git'
             }
         }
         stage('Build') {
