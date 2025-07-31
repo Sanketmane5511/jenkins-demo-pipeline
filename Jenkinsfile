@@ -13,3 +13,16 @@ pipeline {
         }
     }
 }
+
+pipeline {
+    // ... your pipeline stages ...
+    post {
+        success {
+            // e.g., emailext body: 'Success', ...
+        }
+        failure {
+            // e.g., emailext body: 'Failure', ...
+        }
+    }
+}
+
