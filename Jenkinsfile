@@ -19,20 +19,25 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'echo "Simulating build..."'
-                // Uncomment to simulate failure
+                sh 'echo "Building..."'
+                // Uncomment below line to simulate a failure
                 // sh 'exit 1'
             }
         }
     }
     post {
-        failure {
-            // Simple 'mail' step, configured in Manage Jenkins -> Configure System (basic mail)
+        success {
             mail to: 'manesankett@gmail.com',
-                 subject: "FAILURE: ${env.JOB_NAME} Build #${env.BUILD_NUMBER}",
-                 body: "Build failed! Check details at: ${env.BUILD_URL}"
+                 subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                 body: "Great news, the build succeeded!\n\nSee details: ${env.BUILD_URL}"
+        }
+        failure {
+            mail to: 'manesankett@gmail.com',
+                 subject: "FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                 body: "Unfortunately, the build failed.\n\nSee details: ${env.BUILD_URL}"
         }
     }
 }
+
 
 
