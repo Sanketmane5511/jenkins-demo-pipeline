@@ -89,7 +89,7 @@ pipeline {
 
                     The build failed.
                 """,
-                to: 'manesankett@gmail.com@gmail.com'
+                to: 'manesankett@gmail.com'
             )
         }
     }
