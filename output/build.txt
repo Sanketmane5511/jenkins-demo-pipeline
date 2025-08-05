@@ -1,0 +1,2 @@
+mkdir -p output
+echo "This is the build output" > output/build.txt
