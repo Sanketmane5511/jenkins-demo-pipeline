@@ -54,8 +54,26 @@
 //     }
 // }
 
-mkdir -p output
-echo "This is the build output" > output/build.txt
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                bat '''
+                    mkdir output
+                    echo Log contents > output\\build.log
+                    echo Report data > output\\report.txt
+                    echo Main output > output\\build.txt
+                '''
+                archiveArtifacts artifacts: 'output\\*.*', fingerprint: true
+            }
+        }
+    }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '5'))
+    }
+}
+
 
 
 
